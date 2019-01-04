@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArrayStack
-{ 
+
     class Program
     {
         static void Main(string[] args)
@@ -15,4 +14,4 @@ namespace ArrayStack
             Console.WriteLine(line.Pop());
         }
     }
-}
+

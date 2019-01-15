@@ -48,7 +48,7 @@ public class AVL<T> where T : IComparable<T>
 
         // balancing
         int balance = this.Height(node.Left) - this.Height(node.Right);
-       
+       //Left Subtree i sbigger
         if (balance > 1)
         {
             int childBalance = this.Height(node.Left.Left) - this.Height(node.Left.Right);
@@ -58,9 +58,14 @@ public class AVL<T> where T : IComparable<T>
             }
             node = this.RotateRight(node);
         }
-        else if(balance < 1)
+        else if(balance < -1) // Right is bigger
         {
-
+            int childBalance = this.Height(node.Right.Left) - this.Height(node.Right.Right);
+            if (childBalance>0)
+            {
+                node.Right = this.RotateRight(node.Right);
+            }
+            node = this.RotateLeft(node);
         }
 
         return node;
@@ -72,7 +77,8 @@ public class AVL<T> where T : IComparable<T>
         newRoot.Left = newRoot.Right;
         newRoot.Right = node;
 
-        newRoot.Height = Math.Max(this.Height(newRoot.Left), this.Height(newRoot.Right)) + 1;
+        node.Height = 1 + Math.Max(this.Height(node.Left), this.Height(node.Right));
+        newRoot.Height =1+ Math.Max(this.Height(newRoot.Left), this.Height(newRoot.Right));
 
         return newRoot;
     }
@@ -83,7 +89,8 @@ public class AVL<T> where T : IComparable<T>
         newRoot.Right = newRoot.Left;
         newRoot.Left = node;
 
-        newRoot.Height =Math.Max( this.Height(newRoot.Left) , this.Height(newRoot.Right)) + 1;
+        node.Height = 1 + Math.Max(this.Height(node.Left), this.Height(node.Right));
+        newRoot.Height = 1+ Math.Max( this.Height(newRoot.Left) , this.Height(newRoot.Right));
 
         return newRoot;
     }

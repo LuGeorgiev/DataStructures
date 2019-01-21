@@ -4,6 +4,10 @@ using System.Collections.Generic;
 public class AStar
 {
     private char[,] maze;
+    PriorityQueue<Node> pQue = new PriorityQueue<Node>();
+    Dictionary<Node, Node> parents = new Dictionary<Node, Node>();
+    //Distance between start and current
+    Dictionary<Node, int> gCost = new Dictionary<Node, int>();
 
     public AStar(char[,] map)
     {
@@ -19,12 +23,7 @@ public class AStar
     }
 
     public IEnumerable<Node> GetPath(Node start, Node goal)
-    {
-        PriorityQueue<Node> pQue = new PriorityQueue<Node>();
-        Dictionary<Node, Node> parents = new Dictionary<Node, Node>();
-        //Distance between start and current
-        Dictionary<Node, int> gCost = new Dictionary<Node, int>();
-
+    {      
         gCost.Add(start, 0);
         parents.Add(start, null);
         pQue.Enqueue(start);

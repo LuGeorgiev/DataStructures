@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Wintellect.PowerCollections;
@@ -8,19 +9,19 @@ namespace RopeTests
     class Program
     {
         static void Main(string[] args)
-        {
-            
-           
+        {   
             int iterrations = 100000;
             Console.WriteLine("Irerration:" + iterrations);
             Stopwatch timer = new Stopwatch();
             BigList<string> rope = new BigList<string>();
 
+
+
             //PrependTest(iterrations, timer, rope);
 
             //AppendTest(iterrations, timer, rope);
 
-            InsertTest(iterrations, timer, rope);
+            //InsertTest(iterrations, timer, rope);
 
 
         }

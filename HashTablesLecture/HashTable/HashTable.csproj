@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="HashTable.cs" />
     <Compile Include="HashTableExample.cs" />
+    <Compile Include="Hash_Set.cs" />
     <Compile Include="KeyValue.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -186,11 +186,20 @@ public class HashTable<TKey, TValue> : IEnumerable<KeyValue<TKey, TValue>>
     {
         get
         {
-            if (this.Count == 0)
+            //if (this.Count == 0)
+            //{
+            //    return new List<TKey>();
+            //}
+
+            //return this.elements.SelectMany(x => x).Select(y=>y.Key);
+
+            foreach (var kvp in elements.Where(x => x != null))
             {
-                return new List<TKey>();
+                foreach (var item in kvp)
+                {
+                    yield return item.Key;
+                }
             }
-            return this.elements.SelectMany(x => x).Select(y=>y.Key);
         }
     }
 

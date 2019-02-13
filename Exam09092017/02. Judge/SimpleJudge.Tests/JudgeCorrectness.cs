@@ -530,7 +530,15 @@ public class JudgeCorrectness
             this.judge.AddSubmission(submission);
         }
 
-        var expected = submissions.Values.Where(x => x.UserId == 3).GroupBy(x => x.ContestId).Select(x => x.OrderByDescending(s => s.Points).ThenBy(s => s.Id).First()).OrderByDescending(x => x.Points).ThenBy(x => x.Id).Select(x => x.ContestId);
+        var expected = submissions.Values
+            .Where(x => x.UserId == 3)
+            .GroupBy(x => x.ContestId)
+            .Select(x => x.OrderByDescending(s => s.Points)
+                .ThenBy(s => s.Id)
+                .First())
+            .OrderByDescending(x => x.Points)
+            .ThenBy(x => x.Id)
+            .Select(x => x.ContestId);
 
         IEnumerable<int> result = this.judge.ContestsByUserIdOrderedByPointsDescThenBySubmissionId(3);
 

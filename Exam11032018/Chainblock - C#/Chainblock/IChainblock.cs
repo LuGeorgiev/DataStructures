@@ -23,10 +23,16 @@ public interface IChainblock : IEnumerable<Transaction>
     IEnumerable<Transaction> GetBySenderOrderedByAmountDescending(string sender);
     IEnumerable<Transaction> GetByReceiverOrderedByAmountThenById(string receiver);
 
-    IEnumerable<Transaction> GetByTransactionStatusAndMaximumAmount(TransactionStatus status, double amount);
-    IEnumerable<Transaction> GetBySenderAndMinimumAmountDescending(string sender, double amount);
-    IEnumerable<Transaction> GetByReceiverAndAmountRange(string receiver, double lo, double hi);
+    IEnumerable<Transaction> GetByTransactionStatusAndMaximumAmount
+        (TransactionStatus status, double amount);
 
-    IEnumerable<Transaction> GetAllInAmountRange(double lo, double hi);
+    IEnumerable<Transaction> GetBySenderAndMinimumAmountDescending
+        (string sender, double amount);
+
+    IEnumerable<Transaction> GetByReceiverAndAmountRange
+        (string receiver, double lo, double hi);
+
+    IEnumerable<Transaction> GetAllInAmountRange
+        (double lo, double hi);
 }
 

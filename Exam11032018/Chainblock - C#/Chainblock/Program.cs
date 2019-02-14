@@ -10,6 +10,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        
+        var sty = new Dictionary<int, string>();
     }
 }

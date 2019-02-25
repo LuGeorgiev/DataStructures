@@ -53,7 +53,7 @@ public class Olympics : IOlympics
         }
 
         competitor.TotalScore += contest.Score;
-        contest.Competitors.Add(competitor);
+        contest.competitors.Add(competitorId, competitor);
     }
 
    
@@ -64,26 +64,10 @@ public class Olympics : IOlympics
     => this.athleths.Count;
 
     public bool Contains(int competitionId, Competitor comp)
-    {
-        if (!this.contests.TryGetValue(competitionId, out var contest))
-        {
-            throw new ArgumentException();
-        }
-        return contest.Competitors.FirstOrDefault(x=>x.Id==comp.Id) != null;
+    {      
 
-        // TODO with dictionary
-
-        //if (!this.athleths.ContainsKey(comp.Id))
-        //{
-        //    throw new ArgumentException();
-        //}
-        //if (!this.contests.ContainsKey(competitionId))
-        //{
-        //    throw new ArgumentException();
-        //}
-        //var athlet = this.athleths[comp.Id];
-
-        //return this.contests[competitionId].Competitors.Any(x => x.Id==athlet.Id);
+        return contests.TryGetValue(competitionId, out var contest) 
+            && contest.competitors.ContainsKey(comp.Id);
     }
 
     public void Disqualify(int competitionId, int competitorId)
@@ -92,13 +76,16 @@ public class Olympics : IOlympics
         {
             throw new ArgumentException();
         }
-        var atlethe = competition.Competitors.FirstOrDefault(x => x.Id == competitorId);
-        if (atlethe==null)
+        if (!competition.competitors.ContainsKey(competitorId))
         {
             throw new ArgumentException();
         }
+
+
+        var atlethe = athleths[competitorId];
+        
         atlethe.TotalScore -= competition.Score;
-        competition.Competitors.Remove(atlethe);
+        competition.competitors.Remove(atlethe.Id);
 
         //if (!this.contests.ContainsKey(competitionId))
         //{
